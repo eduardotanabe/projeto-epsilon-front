@@ -1,0 +1,211 @@
+[
+  {
+    "id": 1,
+    "marca": {
+      "id": 7,
+      "nome": "Jeep"
+    },
+    "tipoVeiculo": {
+      "id": 1,
+      "nome": "Automóvel"
+    },
+    "modelo": "Civic",
+    "placaLicenca": "HTD1L56",
+    "anoFabricacao": 2015,
+    "anoModelo": 2015,
+    "sequencialChassi": "fda1s5f1as6fd1f5",
+    "sequencialMotor": "f1asd56f1sd5a61fdsf1a"
+  },
+  {
+    "id": 2,
+    "marca": {
+      "id": 8,
+      "nome": "Kawazaki"
+    },
+    "tipoVeiculo": {
+      "id": 1,
+      "nome": "Automóvel"
+    },
+    "modelo": "Fiesta",
+    "placaLicenca": "KID8L36",
+    "anoFabricacao": 2003,
+    "anoModelo": 2003,
+    "sequencialChassi": "8g9fd1s6g1df1g6d5sf",
+    "sequencialMotor": "1568df1g6fd1h8fd6h"
+  },
+  {
+    "id": 3,
+    "marca": {
+      "id": 5,
+      "nome": "Chevrolet"
+    },
+    "tipoVeiculo": {
+      "id": 1,
+      "nome": "Automóvel"
+    },
+    "modelo": "HYUNDAI I30 2.0",
+    "placaLicenca": "FRD2709",
+    "anoFabricacao": 2010,
+    "anoModelo": 2011,
+    "sequencialChassi": "KMHDC51EBBU261847",
+    "sequencialMotor": "G4GCA823586"
+  },
+  {
+    "id": 4,
+    "marca": {
+      "id": 1,
+      "nome": "Honda"
+    },
+    "tipoVeiculo": {
+      "id": 1,
+      "nome": "Automóvel"
+    },
+    "modelo": "corsa",
+    "placaLicenca": "1f5d6s1a",
+    "anoFabricacao": 2012,
+    "anoModelo": 2012,
+    "sequencialChassi": "1d5as1sa56fds16f",
+    "sequencialMotor": "1f5das61f5s6adf1d5s"
+  },
+  {
+    "id": 5,
+    "marca": null,
+    "tipoVeiculo": null,
+    "modelo": "HYUNDAI I30 2.0",
+    "placaLicenca": "FRD2709",
+    "anoFabricacao": 2010,
+    "anoModelo": 2011,
+    "sequencialChassi": "KMHDC51EBBU261847",
+    "sequencialMotor": "G4GCA823586"
+  },
+  {
+    "id": 6,
+    "marca": null,
+    "tipoVeiculo": null,
+    "modelo": "uno",
+    "placaLicenca": "FRD2709",
+    "anoFabricacao": 2010,
+    "anoModelo": 2011,
+    "sequencialChassi": "KMHDC51EBBU261847",
+    "sequencialMotor": "G4GCA823586"
+  },
+  {
+    "id": 7,
+    "marca": {
+      "id": 2,
+      "nome": "Toyota"
+    },
+    "tipoVeiculo": {
+      "id": 1,
+      "nome": "Automóvel"
+    },
+    "modelo": "uno",
+    "placaLicenca": "FRD2709",
+    "anoFabricacao": 2010,
+    "anoModelo": 2011,
+    "sequencialChassi": "KMHDC51EBBU261847",
+    "sequencialMotor": "G4GCA823586"
+  },
+  {
+    "id": 8,
+    "marca": {
+      "id": 11,
+      "nome": "Citroen"
+    },
+    "tipoVeiculo": {
+      "id": 5,
+      "nome": "Caminhão"
+    },
+    "modelo": "HYUNDAI",
+    "placaLicenca": "FRD2709     ",
+    "anoFabricacao": 2010,
+    "anoModelo": 2012,
+    "sequencialChassi": "fsdfdsafklçsdajflsd",
+    "sequencialMotor": "fklsafçlsadfmklsaç"
+  },
+  {
+    "id": 9,
+    "marca": {
+      "id": 5,
+      "nome": "Chevrolet"
+    },
+    "tipoVeiculo": {
+      "id": 1,
+      "nome": "Automóvel"
+    },
+    "modelo": "Onix",
+    "placaLicenca": "FDC9847",
+    "anoFabricacao": 2010,
+    "anoModelo": 2015,
+    "sequencialChassi": "fsdfdsafklçsdajflsd",
+    "sequencialMotor": "fklsafçlsadfmklsaç"
+  },
+  {
+    "id": 10,
+    "marca": {
+      "id": 1,
+      "nome": "Honda"
+    },
+    "tipoVeiculo": {
+      "id": 2,
+      "nome": "Motocicleta"
+    },
+    "modelo": "CG 150 Titan KS",
+    "placaLicenca": "RTD5698",
+    "anoFabricacao": 2011,
+    "anoModelo": 2011,
+    "sequencialChassi": "fsdfdsafklçsdajflsd",
+    "sequencialMotor": "fklsafçlsadfmklsaç"
+  },
+  {
+    "id": 11,
+    "marca": {
+      "id": 1,
+      "nome": "Honda"
+    },
+    "tipoVeiculo": {
+      "id": 1,
+      "nome": "Automóvel"
+    },
+    "modelo": "HR-V",
+    "placaLicenca": "DVD9658",
+    "anoFabricacao": 2010,
+    "anoModelo": 2011,
+    "sequencialChassi": "KMHDC51EBBU261847",
+    "sequencialMotor": "G4GCA823586"
+  },
+  {
+    "id": 12,
+    "marca": {
+      "id": 2,
+      "nome": "Toyota"
+    },
+    "tipoVeiculo": {
+      "id": 1,
+      "nome": "Automóvel"
+    },
+    "modelo": "Hilux",
+    "placaLicenca": "GDA7896",
+    "anoFabricacao": 2020,
+    "anoModelo": 2020,
+    "sequencialChassi": "KMHDC51EBBU261847",
+    "sequencialMotor": "G4GCA823586"
+  },
+  {
+    "id": 13,
+    "marca": {
+      "id": 3,
+      "nome": "Volkswagen"
+    },
+    "tipoVeiculo": {
+      "id": 1,
+      "nome": "Automóvel"
+    },
+    "modelo": "Virtus",
+    "placaLicenca": "EAD8974",
+    "anoFabricacao": 2020,
+    "anoModelo": 2020,
+    "sequencialChassi": "KMHDC51EBBU261847",
+    "sequencialMotor": "G4GCA823586"
+  }
+] 
