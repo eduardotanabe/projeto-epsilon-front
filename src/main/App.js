@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom'
 import Navbar from '../components/navbar'
 import Rotas from './rotas'
 
-import 'bootswatch/dist/materia/bootstrap.css'
+import 'bootswatch/dist/yeti/bootstrap.css'
 import '../main/custom.css'
 
 function App() {
