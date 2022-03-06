@@ -1,11 +1,9 @@
 import React, { useState } from "react"
 import axios from "axios"
-import VeiculoService from "../service/veiculo-service"
 import AsyncSelect from 'react-select/async'
 
 import SelectListaAno from "../components/formulario/selectListaAno"
 import SelectAnoModelo from "../components/formulario/selectAnoModelo"
-import LeitorPdf from "../components/tratamento-pdf/leitor-pdf"
 
 export default function CadastrarVeiculo() {
     const [modelo, setModelo] = useState("")
@@ -17,7 +15,7 @@ export default function CadastrarVeiculo() {
     const [marcaSelecionada, setMarcaSelecionada] = useState({})
     const [tipoVeiculoSelecionado, setTipoVeiculoSelecionado] = useState({})
 
-    const [teste, setTeste] = useState({})
+    const [arquivoPdf, setArquivoPdf] = useState(null)
 
     let listaMarcas = []
     let listaTiposVeiculo = []
@@ -36,11 +34,31 @@ export default function CadastrarVeiculo() {
         return veiculo
     }
 
+    async function preencherFormulario(arquivo) {
+        const url = 'veiculos/uploads'
+        const formData = new FormData()
+        await formData.append('file', arquivo)
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            }
+        }
+        
+        axios.post(url, formData, config)
+            .then(result => {
+                console.log(result.data)
+                setAnoFabricacao(result.data.anoFabricacao)
+                setModelo(result.data.modelo)
+                setAnoModelo(result.data.anoModelo)
+                setAnoModelo(result.data.anoModelo)
+                setSequencialChassi(result.data.sequencialChassi)
+                setSequencialMotor(result.data.sequencialMotor)
+                setPlacaLicenca(result.data.placaLicenca)
+            })
+    }
+
     async function cadastrar() {
         let veiculo = await preencherParaEnvio()
-        // setTeste(veiculo)
-        console.log(veiculo)
-
         axios.post('veiculos/', veiculo)
             .then(
                 result => console.log(veiculo),
@@ -136,7 +154,11 @@ export default function CadastrarVeiculo() {
                                 <div className="form-group">
                                     <SelectListaAno
                                         titulo={"Ano de fabricação"}
-                                        anoClicado={ano => setAnoFabricacao(ano)} />
+                                        anoClicado={ano => {
+                                            setAnoFabricacao(ano)
+                                            setAnoModelo(ano)
+                                        }
+                                        } />
                                 </div>
 
                             </div>
@@ -153,7 +175,7 @@ export default function CadastrarVeiculo() {
                             </div>
                         </div>
                         <div>
-                            <div className="form-group">
+                            <div>
                                 <label className="form-label mt-4">Sequencial do chassi</label>
                                 <input type="text" className="form-control" id="sequencial-chassi" aria-describedby="emailHelp"
                                     placeholder="ex.: 9BWAA05U9DP222222"
@@ -168,10 +190,23 @@ export default function CadastrarVeiculo() {
                                     onChange={e => setSequencialMotor(e.target.value.toUpperCase().trim())} />
                             </div>
                         </div>
-                        <div className="modal-footer">
+
+                        <div>
+                            <label htmlFor="formFile" className="form-label mt-4">** Caso queira, adicione arquivo .PDF para preencher o formulário de forma automática</label>
+                            <div className="form-group">
+                                <div className="input-group mb-3">
+                                    <input type="file" name="file" id="formFile" className="form-control" onChange={e => setArquivoPdf(e.target.files[0])}/>
+                                    <div className="input-group-append">
+                                        <button className="btn btn-warning btn-outline-secondary" type="button"
+                                            onClick={e => preencherFormulario(arquivoPdf)}>Preencher</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div >
                             <button type="button" className="btn btn-primary btn-lg" onClick={cadastrar}>Cadastrar</button>
                         </div>
-                        <small className="form-text text-muted">** Preencher todos o campos</small>
+                        <small className="form-text text-muted">** Preencher todos os campos</small>
 
                     </div>
                 </form>
