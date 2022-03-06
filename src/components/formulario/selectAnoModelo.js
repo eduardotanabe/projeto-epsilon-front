@@ -21,7 +21,7 @@ export default (props) => {
             <select className="form-select" 
                 id="dropdown-ano-modelo" 
                 onChange={e => props.anoModeloClicado(e.target.value)}
-                disabled={props.anoFabricacao? false : true}
+                disabled={props.anoFabricacao ? false : true}
                 >
                     {listaAnosModelo()}
             </select>
