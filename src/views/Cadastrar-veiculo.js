@@ -17,6 +17,8 @@ export default function CadastrarVeiculo() {
 
     const [arquivoPdf, setArquivoPdf] = useState(null)
 
+    const [foto1, setFoto1] = useState(null)
+
     let listaMarcas = []
     let listaTiposVeiculo = []
 
@@ -43,7 +45,7 @@ export default function CadastrarVeiculo() {
                 'content-type': 'multipart/form-data',
             }
         }
-        
+
         axios.post(url, formData, config)
             .then(result => {
                 console.log(result.data)
@@ -55,6 +57,19 @@ export default function CadastrarVeiculo() {
                 setSequencialMotor(result.data.sequencialMotor)
                 setPlacaLicenca(result.data.placaLicenca)
             })
+    }
+
+    async function uploadfoto(foto) {
+        const url = 'imagens/upload'
+        const formData = new FormData()
+        await formData.append('file', foto)
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            }
+        }
+        axios.post(url, formData, config)
+            .then(result => console.log(result.data))
     }
 
     async function cadastrar() {
@@ -96,121 +111,143 @@ export default function CadastrarVeiculo() {
 
     return (
         <div className="container">
-            <div className="card border-secondary mb-3 col-7">
-                <form>
-                    <div className="card-body">
+
+            <h1 className="alert alert-dismissible alert-primary">Cadastro de Veículo</h1>
+            <div className="row">
+                <div className="mb-3 col-7">
+                    <form>
                         <div className="row">
-                            <h1 className="alert alert-dismissible alert-primary">Cadastro de Veículo</h1>
-                            <div className="col">
-                                <div className="form-group">
-                                    <label className="form-label mt-4">Marca do veículo</label>
-                                    <AsyncSelect loadOptions={listarMarcas}
-                                        onChange={data => {
-                                            setMarcaSelecionada(data)
-                                        }}
-                                        defaultOptions
-                                        cacheOptions
-                                        placeholder="Marca do veículo"
-                                    />
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div className="form-group">
-                                    <label className="form-label mt-4">Tipo do veículo</label>
-                                    <AsyncSelect loadOptions={listarTiposVeiculo}
-                                        onChange={data => {
-                                            setTipoVeiculoSelecionado(data)
-                                        }}
-                                        defaultOptions
-                                        cacheOptions
-                                        placeholder="Tipo do veículo"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="col">
-                                <div className="form-group">
-                                    <label className="form-label mt-4">Modelo</label>
-                                    <input type="text" className="form-control" id="modelo" aria-describedby="emailHelp"
-                                        placeholder="ex.: GOL 1.6 POWER"
-                                        value={modelo}
-                                        onChange={e => setModelo(e.target.value.toUpperCase())} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col">
-                                <div className="form-group">
-                                    <label className="form-label mt-4">Placa de licença</label>
-                                    <input type="text" className="form-control" id="placa-licenca" aria-describedby="emailHelp"
-                                        placeholder="ex.: ABC9745"
-                                        value={placaLicenca}
-                                        onChange={e => setPlacaLicenca(e.target.value.toUpperCase().trim())} />
-                                </div>
+                            <div className="card-body">
+                                <div className="row">
 
-                            </div>
-                            <div className="col">
-                                <div className="form-group">
-                                    <SelectListaAno
-                                        titulo={"Ano de fabricação"}
-                                        anoClicado={ano => {
-                                            setAnoFabricacao(ano)
-                                            setAnoModelo(ano)
-                                        }
-                                        } />
-                                </div>
-
-                            </div>
-                            <div className="col">
-                                <div className="form-group">
-                                    <SelectAnoModelo
-                                        anoFabricacao={anoFabricacao}
-                                        anoModeloClicado={ano => {
-                                            setAnoModelo(ano)
-                                        }}
-                                    />
-                                </div>
-
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <label className="form-label mt-4">Sequencial do chassi</label>
-                                <input type="text" className="form-control" id="sequencial-chassi" aria-describedby="emailHelp"
-                                    placeholder="ex.: 9BWAA05U9DP222222"
-                                    value={sequencialChassi}
-                                    onChange={e => setSequencialChassi(e.target.value.toUpperCase().trim())} />
-                            </div>
-                            <div className="form-group">
-                                <label className="form-label mt-4">Sequecial do bloco de motor</label>
-                                <input type="text" className="form-control" id="sequencial-motor" aria-describedby="emailHelp"
-                                    placeholder="ex.: CCNC11111"
-                                    value={sequencialMotor}
-                                    onChange={e => setSequencialMotor(e.target.value.toUpperCase().trim())} />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label htmlFor="formFile" className="form-label mt-4">** Caso queira, adicione arquivo .PDF para preencher o formulário de forma automática</label>
-                            <div className="form-group">
-                                <div className="input-group mb-3">
-                                    <input type="file" name="file" id="formFile" className="form-control" onChange={e => setArquivoPdf(e.target.files[0])}/>
-                                    <div className="input-group-append">
-                                        <button className="btn btn-warning btn-outline-secondary" type="button"
-                                            onClick={e => preencherFormulario(arquivoPdf)}>Preencher</button>
+                                    <div className="col">
+                                        <div className="form-group">
+                                            <label className="form-label mt-4">Marca do veículo</label>
+                                            <AsyncSelect loadOptions={listarMarcas}
+                                                onChange={data => {
+                                                    setMarcaSelecionada(data)
+                                                }}
+                                                defaultOptions
+                                                cacheOptions
+                                                placeholder="Marca do veículo"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <div className="form-group">
+                                            <label className="form-label mt-4">Tipo do veículo</label>
+                                            <AsyncSelect loadOptions={listarTiposVeiculo}
+                                                onChange={data => {
+                                                    setTipoVeiculoSelecionado(data)
+                                                }}
+                                                defaultOptions
+                                                cacheOptions
+                                                placeholder="Tipo do veículo"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
+                                <div>
+                                    <div className="col">
+                                        <div className="form-group">
+                                            <label className="form-label mt-4">Modelo</label>
+                                            <input type="text" className="form-control" id="modelo" aria-describedby="emailHelp"
+                                                placeholder="ex.: GOL 1.6 POWER"
+                                                value={modelo}
+                                                onChange={e => setModelo(e.target.value.toUpperCase())} />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col">
+                                        <div className="form-group">
+                                            <label className="form-label mt-4">Placa de licença</label>
+                                            <input type="text" className="form-control" id="placa-licenca" aria-describedby="emailHelp"
+                                                placeholder="ex.: ABC9745"
+                                                value={placaLicenca}
+                                                onChange={e => setPlacaLicenca(e.target.value.toUpperCase().trim())} />
+                                        </div>
+
+                                    </div>
+                                    <div className="col">
+                                        <div className="form-group">
+                                            <SelectListaAno
+                                                titulo={"Ano de fabricação"}
+                                                anoClicado={ano => {
+                                                    setAnoFabricacao(ano)
+                                                    setAnoModelo(ano)
+                                                }
+                                                } />
+                                        </div>
+
+                                    </div>
+                                    <div className="col">
+                                        <div className="form-group">
+                                            <SelectAnoModelo
+                                                anoFabricacao={anoFabricacao}
+                                                anoModeloClicado={ano => {
+                                                    setAnoModelo(ano)
+                                                }}
+                                            />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <label className="form-label mt-4">Sequencial do chassi</label>
+                                        <input type="text" className="form-control" id="sequencial-chassi" aria-describedby="emailHelp"
+                                            placeholder="ex.: 9BWAA05U9DP222222"
+                                            value={sequencialChassi}
+                                            onChange={e => setSequencialChassi(e.target.value.toUpperCase().trim())} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="form-label mt-4">Sequecial do bloco de motor</label>
+                                        <input type="text" className="form-control" id="sequencial-motor" aria-describedby="emailHelp"
+                                            placeholder="ex.: CCNC11111"
+                                            value={sequencialMotor}
+                                            onChange={e => setSequencialMotor(e.target.value.toUpperCase().trim())} />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label htmlFor="formFile" className="form-label mt-4">** Caso queira, adicione arquivo .PDF para preencher o formulário de forma automática</label>
+                                    <div className="form-group">
+                                        <div className="input-group mb-3">
+                                            <input type="file" name="file" id="formFile" className="form-control" onChange={e => setArquivoPdf(e.target.files[0])} />
+                                            <div className="input-group-append">
+                                                <button className="btn btn-warning btn-outline-secondary" type="button"
+                                                    onClick={e => preencherFormulario(arquivoPdf)}>Preencher</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div >
+                                    <button type="button" className="btn btn-primary btn-lg" onClick={cadastrar}>Cadastrar</button>
+                                </div>
+                                <small className="form-text text-muted">** Preencher todos os campos</small>
+
+                            </div>
+                            <div className="card-body">
+
                             </div>
                         </div>
-                        <div >
-                            <button type="button" className="btn btn-primary btn-lg" onClick={cadastrar}>Cadastrar</button>
+                    </form>
+                </div>
+                <div className="col-sm">
+                    <label htmlFor="formFile" className="form-label mt-4">Fotografia teste</label>
+                    <div className="form-group">
+                        <div className="input-group mb-3">
+                            <input type="file" name="file" id="formFile" className="form-control" onChange={e => setFoto1(e.target.files[0])} />
+                            <div className="input-group-append">
+                                <button className="btn btn-warning btn-outline-secondary" type="button"
+                                    onClick={e => uploadfoto(foto1)}>Teste</button>
+                            </div>
                         </div>
-                        <small className="form-text text-muted">** Preencher todos os campos</small>
-
                     </div>
-                </form>
+                </div>
             </div>
         </div>
+
     )
 }

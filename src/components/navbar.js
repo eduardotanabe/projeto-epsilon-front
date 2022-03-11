@@ -21,6 +21,7 @@ function Navbar() {
                         <NavbarItem href="/cadastrar-veiculo" label="Cadastrar veículo" />
                         <NavbarItem href="/pesquisar" label="Pesquisar veíuculos" />
                         <NavbarItem href="/resultado-pesquisa" label="Resultado da Pesquisa" />
+                        <NavbarItem href="/fotos" label="Fotos" />
                         <NavbarItem href="/sobre" label="Sobre" />
                         
                     </ul>
