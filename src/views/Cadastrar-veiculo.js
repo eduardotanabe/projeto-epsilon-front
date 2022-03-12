@@ -17,7 +17,7 @@ export default function CadastrarVeiculo() {
 
     const [arquivoPdf, setArquivoPdf] = useState(null)
 
-    const [foto1, setFoto1] = useState(null)
+    let fotos = []
 
     let listaMarcas = []
     let listaTiposVeiculo = []
@@ -74,7 +74,18 @@ export default function CadastrarVeiculo() {
 
     async function cadastrar() {
         let veiculo = await preencherParaEnvio()
-        axios.post('veiculos/', veiculo)
+        const blob = new Blob([JSON.stringify(veiculo)], {
+            type: "application/json"
+        })
+        const formData = new FormData()
+        formData.append('form', blob)
+        await fotos.map(foto => formData.append('files', foto))
+        // await formData.append('files', foto1)
+        // await formData.append('files', foto2)
+        const config = {
+            'Content-Type': 'multipart/form-data'
+        }
+        axios.post('/veiculos', formData, config)
             .then(
                 result => console.log(veiculo),
             )
@@ -112,14 +123,14 @@ export default function CadastrarVeiculo() {
     return (
         <div className="container">
 
-            <h1 className="alert alert-dismissible alert-primary">Cadastro de Veículo</h1>
+            <h1 className="p-3 mb-2 bg-primary text-white display-6"><strong>Cadastro de Veículo</strong></h1>
             <div className="row">
                 <div className="mb-3 col-7">
                     <form>
                         <div className="row">
                             <div className="card-body">
                                 <div className="row">
-
+                                    <small className="form-text text-muted">** Preencher todos os campos</small>
                                     <div className="col">
                                         <div className="form-group">
                                             <label className="form-label mt-4">Marca do veículo</label>
@@ -222,11 +233,6 @@ export default function CadastrarVeiculo() {
                                         </div>
                                     </div>
                                 </div>
-                                <div >
-                                    <button type="button" className="btn btn-primary btn-lg" onClick={cadastrar}>Cadastrar</button>
-                                </div>
-                                <small className="form-text text-muted">** Preencher todos os campos</small>
-
                             </div>
                             <div className="card-body">
 
@@ -235,18 +241,55 @@ export default function CadastrarVeiculo() {
                     </form>
                 </div>
                 <div className="col-sm">
-                    <label htmlFor="formFile" className="form-label mt-4">Fotografia teste</label>
+                    <label htmlFor="formFile" className="form-label mt-4">Fotografia vértice frontal</label>
                     <div className="form-group">
                         <div className="input-group mb-3">
-                            <input type="file" name="file" id="formFile" className="form-control" onChange={e => setFoto1(e.target.files[0])} />
-                            <div className="input-group-append">
-                                <button className="btn btn-warning btn-outline-secondary" type="button"
-                                    onClick={e => uploadfoto(foto1)}>Teste</button>
-                            </div>
+                            <input type="file" name="file1" id="formFile" className="form-control" onChange={e => fotos[0] = e.target.files[0]} />
+
+                        </div>
+                    </div>
+                    <label htmlFor="formFile" className="form-label mt-4">Fotografia vértice traseiro</label>
+                    <div className="form-group">
+                        <div className="input-group mb-3">
+                            <input type="file" name="file2" id="formFile" className="form-control" onChange={e => fotos[1] = e.target.files[0]} />
+
+                        </div>
+                    </div>
+                    <label htmlFor="formFile" className="form-label mt-4">Fotografia da etiqueta de segurança</label>
+                    <div className="form-group">
+                        <div className="input-group mb-3">
+                            <input type="file" name="file2" id="formFile" className="form-control" onChange={e => fotos[2] = e.target.files[0]} />
+
+                        </div>
+                    </div>
+                    <label htmlFor="formFile" className="form-label mt-4">Fotografia da gravação no vidro</label>
+                    <div className="form-group">
+                        <div className="input-group mb-3">
+                            <input type="file" name="file2" id="formFile" className="form-control" onChange={e => fotos[3] = e.target.files[0]} />
+
+                        </div>
+                    </div>
+                    <label htmlFor="formFile" className="form-label mt-4">Fotografia do sequencial do chassi</label>
+                    <div className="form-group">
+                        <div className="input-group mb-3">
+                            <input type="file" name="file2" id="formFile" className="form-control" onChange={e => fotos[4] = e.target.files[0]} />
+
+                        </div>
+                    </div>
+                    <label htmlFor="formFile" className="form-label mt-4">Fotografia do sequencial do motor</label>
+                    <div className="form-group">
+                        <div className="input-group mb-3">
+                            <input type="file" name="file2" id="formFile" className="form-control" onChange={e => fotos[5] = e.target.files[0]} />
+
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="d-grid gap-2">
+                <button type="button" className="btn btn-outline-dark btn-lg" onClick={cadastrar}>Cadastrar</button>
+            </div>
+            <br />
+            <br />
         </div>
 
     )
