@@ -1,10 +1,12 @@
 import React, { useMemo } from "react";
-import { useTable, usePagination, useRowSelect } from "react-table";
+import { useNavigate } from "react-router-dom";
+import { useTable, usePagination } from "react-table";
 import { COLUMNS } from "./columns"
 
 
 export const Table = (props) => {
 
+    const navigate = useNavigate()
     const columns = useMemo(() => COLUMNS, [])
     const data = useMemo(() => props.data, [])
     const tableInstance = useTable({
@@ -48,7 +50,12 @@ export const Table = (props) => {
                     {page.map((row, i) => {
                         prepareRow(row)
                         return (
-                            <tr key={i} {...row.getRowProps} onClick={() => console.log(row.original)} >
+                            <tr key={i} {...row.getRowProps} onClick={() => {
+                                console.log(row.original)
+                                navigate('/fotos', { state: {
+                                    id: row.original.id 
+                                }})
+                            }} >
                                 {row.cells.map(cell => {
                                     return <td {...cell.getCellProps()}> {cell.render('Cell')} </td>
                                 })}

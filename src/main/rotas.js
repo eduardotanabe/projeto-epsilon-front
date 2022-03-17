@@ -8,7 +8,7 @@ import ResultadoPesquisa from '../views/pesquisar/resultado-pesquisa'
 import PesquisaTeste from '../views/pesquisar/PesquisaTeste'
 import ResultadoTeste from '../views/pesquisar/ResultadoTeste'
 import PaginaNãoEncontrada from '../views/Pagina-não-encontrada'
-import Fotos from '../views/Fotos'
+import Fotos from '../views/renderizar-imagens/Fotos'
 
 function Rotas() {
     return(
